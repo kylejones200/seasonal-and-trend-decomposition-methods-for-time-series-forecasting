@@ -1,13 +1,38 @@
 # Seasonal and Trend Decomposition Methods for Time Series Forecasting
 
-**Published:** 2025-01-16
-**Medium:** [https://medium.com/@kyle-t-jones/seasonal-and-trend-decomposition-methods-for-time-series-forecasting-c5d4564c981a](https://medium.com/@kyle-t-jones/seasonal-and-trend-decomposition-methods-for-time-series-forecasting-c5d4564c981a)
+This project demonstrates different decomposition methods for time series analysis, including additive, multiplicative, and robust decomposition techniques.
 
-## About
+## Article
 
-Place the code for this article in this repository.
-The original article export is saved as `article.md`.
+Medium article: [Seasonal and Trend Decomposition Methods](https://medium.com/@kylejones_47003/seasonal-and-trend-decomposition-methods-for-time-series-forecasting-c5d4564c981a)
 
-## Files
+## Project Structure
 
-Add your `.ipynb`, `.py`, `.yaml`, `.js`, `.ts`, or other project files here.
+```
+.
+├── README.md           # This file
+├── main.py            # Main entry point
+├── config.yaml        # Configuration file
+├── requirements.txt   # Python dependencies
+├── src/               # Core functions
+│   ├── core.py        # Decomposition functions
+│   └── plotting.py     # Tufte-style plotting utilities
+├── tests/             # Unit tests
+├── data/              # Data files (if needed)
+└── images/            # Generated plots and figures
+```
+
+## Configuration
+
+Edit `config.yaml` to customize:
+- Data generation parameters (date range, frequency, seed)
+- Decomposition period
+- Which decomposition methods to run
+- Output settings
+
+## Caveats
+
+- By default, the script generates synthetic data with known trend, seasonality, and noise.
+- Additive decomposition assumes components add together.
+- Multiplicative decomposition assumes components multiply together.
+- Robust decomposition uses Savitzky-Golay filtering for trend estimation.
