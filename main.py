@@ -37,7 +37,7 @@ def main():
     output_dir = Path(args.output_dir) if args.output_dir else Path(config['output']['figures_dir'])
     output_dir.mkdir(exist_ok=True)
     
-        df = generate_synthetic_data(
+    df = generate_synthetic_data(
         config['data']['start_date'],
         config['data']['end_date'],
         config['data']['frequency'],
@@ -58,10 +58,10 @@ def main():
                                     output_dir / 'compare_decomposition_methods.png')
     
     if config['analysis']['run_robust']:
-                robust_results = robust_decomposition(df, config['decomposition']['period'])
-            if additive_decomp:
-        analysis_results = analyze_components(additive_decomp)
-                logging.info(f"Trend Direction: {analysis_results['trend_direction']}")
+        robust_results = robust_decomposition(df, config['decomposition']['period'])
+        if additive_decomp:
+            analysis_results = analyze_components(additive_decomp)
+            logging.info(f"Trend Direction: {analysis_results['trend_direction']}")
         logging.info(f"Trend Strength: {analysis_results['trend_strength']:.4f}")
         logging.info(f"Seasonal Amplitude: {analysis_results['seasonal_amplitude']:.4f}")
         logging.info(f"Residual Variance: {analysis_results['residual_variance']:.4f}")
