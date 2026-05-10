@@ -73,22 +73,23 @@ def analyze_components(decomposition_result) -> Dict[str, Any]:
         'residual_variance': residual_variance
     }
 
-def plot_decomposition_comparison(df: pd.DataFrame, additive, multiplicative, output_path: Path):
+def plot_decomposition_comparison(df: pd.DataFrame, additive, multiplicative, output_path: Path, plot: bool = False):
     """Plot comparison of additive and multiplicative decomposition."""
-    fig, axes = plt.subplots(2, 4, figsize=(20, 10))
+    if plot:
+        fig, axes = plt.subplots(2, 4, figsize=(20, 10))
     
-    axes[0, 0].plot(df['value'], color="#4A90A4", linewidth=1.2)
-    axes[0, 1].plot(additive.trend, color="#4A90A4", linewidth=1.2)
-    axes[0, 2].plot(additive.seasonal, color="#D4A574", linewidth=1.2)
-    axes[0, 3].plot(additive.resid, color="#8B6F9E", linewidth=1.2)
+        axes[0, 0].plot(df['value'], color="#4A90A4", linewidth=1.2)
+        axes[0, 1].plot(additive.trend, color="#4A90A4", linewidth=1.2)
+        axes[0, 2].plot(additive.seasonal, color="#D4A574", linewidth=1.2)
+        axes[0, 3].plot(additive.resid, color="#8B6F9E", linewidth=1.2)
     
-    axes[1, 0].plot(df['value'], color="#4A90A4", linewidth=1.2)
-    axes[1, 1].plot(multiplicative.trend, color="#4A90A4", linewidth=1.2)
-    axes[1, 2].plot(multiplicative.seasonal, color="#D4A574", linewidth=1.2)
-    axes[1, 3].plot(multiplicative.resid, color="#8B6F9E", linewidth=1.2)
+        axes[1, 0].plot(df['value'], color="#4A90A4", linewidth=1.2)
+        axes[1, 1].plot(multiplicative.trend, color="#4A90A4", linewidth=1.2)
+        axes[1, 2].plot(multiplicative.seasonal, color="#D4A574", linewidth=1.2)
+        axes[1, 3].plot(multiplicative.resid, color="#8B6F9E", linewidth=1.2)
     
-    plt.suptitle("Additive vs Multiplicative Decomposition Comparison", 
-                 fontsize=12, y=0.98, color='0.2')
-    plt.savefig(output_path, dpi=100, bbox_inches="tight")
-    plt.close()
+        plt.suptitle("Additive vs Multiplicative Decomposition Comparison", 
+                     fontsize=12, y=0.98, color='0.2')
+        plt.savefig(output_path, dpi=100, bbox_inches="tight")
+        plt.close()
 

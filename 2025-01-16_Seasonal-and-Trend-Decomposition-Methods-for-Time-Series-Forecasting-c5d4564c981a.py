@@ -25,7 +25,7 @@ data = trend + seasonality + noise
 df = pd.DataFrame({'date': dates, 'value': data})
 
 # Additive vs. Multiplicative Decomposition
-def compare_decomposition_methods(df, period=365):
+def compare_decomposition_methods(df, period=365, plot: bool = False):
     # Additive decomposition
     additive = seasonal_decompose(df['value'], period=period, model='additive')
     
@@ -33,31 +33,32 @@ def compare_decomposition_methods(df, period=365):
     multiplicative = seasonal_decompose(df['value'], period=period, model='multiplicative')
     
     # Plotting both decompositions
-    fig, axes = plt.subplots(2, 4, figsize=(20, 10))
+    if plot:
+        fig, axes = plt.subplots(2, 4, figsize=(20, 10))
     
     # Plot additive decomposition
-    axes[0, 0].plot(df['value'])
-    axes[0, 0].set_title('Original (Additive)')
-    axes[0, 1].plot(additive.trend)
-    axes[0, 1].set_title('Trend')
-    axes[0, 2].plot(additive.seasonal)
-    axes[0, 2].set_title('Seasonal')
-    axes[0, 3].plot(additive.resid)
-    axes[0, 3].set_title('Residual')
+        axes[0, 0].plot(df['value'])
+        axes[0, 0].set_title('Original (Additive)')
+        axes[0, 1].plot(additive.trend)
+        axes[0, 1].set_title('Trend')
+        axes[0, 2].plot(additive.seasonal)
+        axes[0, 2].set_title('Seasonal')
+        axes[0, 3].plot(additive.resid)
+        axes[0, 3].set_title('Residual')
     
     # Plot multiplicative decomposition
-    axes[1, 0].plot(df['value'])
-    axes[1, 0].set_title('Original (Multiplicative)')
-    axes[1, 1].plot(multiplicative.trend)
-    axes[1, 1].set_title('Trend')
-    axes[1, 2].plot(multiplicative.seasonal)
-    axes[1, 2].set_title('Seasonal')
-    axes[1, 3].plot(multiplicative.resid)
-    axes[1, 3].set_title('Residual')
+        axes[1, 0].plot(df['value'])
+        axes[1, 0].set_title('Original (Multiplicative)')
+        axes[1, 1].plot(multiplicative.trend)
+        axes[1, 1].set_title('Trend')
+        axes[1, 2].plot(multiplicative.seasonal)
+        axes[1, 2].set_title('Seasonal')
+        axes[1, 3].plot(multiplicative.resid)
+        axes[1, 3].set_title('Residual')
     
-    plt.tight_layout()
-    plt.savefig("Compare_Decomposition_Methods.png")
-    plt.show()  # Show the figure interactively
+        plt.tight_layout()
+        plt.savefig("Compare_Decomposition_Methods.png")
+        plt.show()  # Show the figure interactively
     return additive, multiplicative
 
 def robust_decomposition(df, period=365):

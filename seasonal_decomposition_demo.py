@@ -26,21 +26,22 @@ df = pd.DataFrame({'date': dates, 'value': data})
 df.set_index('date', inplace=True)
 
 # Additive vs. Multiplicative Decomposition
-def compare_decomposition_methods(df, period=365):
+def compare_decomposition_methods(df, period=365, plot: bool = False):
     additive = seasonal_decompose(df['value'], period=period, model='additive')
     multiplicative = seasonal_decompose(df['value'], period=period, model='multiplicative')
-    fig, axes = plt.subplots(2, 4, figsize=(20, 10))
-    axes[0, 0].plot(df['value']); axes[0, 0].set_title('Original (Additive)')
-    axes[0, 1].plot(additive.trend); axes[0, 1].set_title('Trend')
-    axes[0, 2].plot(additive.seasonal); axes[0, 2].set_title('Seasonal')
-    axes[0, 3].plot(additive.resid); axes[0, 3].set_title('Residual')
-    axes[1, 0].plot(df['value']); axes[1, 0].set_title('Original (Multiplicative)')
-    axes[1, 1].plot(multiplicative.trend); axes[1, 1].set_title('Trend')
-    axes[1, 2].plot(multiplicative.seasonal); axes[1, 2].set_title('Seasonal')
-    axes[1, 3].plot(multiplicative.resid); axes[1, 3].set_title('Residual')
-    plt.tight_layout()
-    plt.savefig("Compare_Decomposition_Methods.png")
-    plt.show()
+    if plot:
+        fig, axes = plt.subplots(2, 4, figsize=(20, 10))
+        axes[0, 0].plot(df['value']); axes[0, 0].set_title('Original (Additive)')
+        axes[0, 1].plot(additive.trend); axes[0, 1].set_title('Trend')
+        axes[0, 2].plot(additive.seasonal); axes[0, 2].set_title('Seasonal')
+        axes[0, 3].plot(additive.resid); axes[0, 3].set_title('Residual')
+        axes[1, 0].plot(df['value']); axes[1, 0].set_title('Original (Multiplicative)')
+        axes[1, 1].plot(multiplicative.trend); axes[1, 1].set_title('Trend')
+        axes[1, 2].plot(multiplicative.seasonal); axes[1, 2].set_title('Seasonal')
+        axes[1, 3].plot(multiplicative.resid); axes[1, 3].set_title('Residual')
+        plt.tight_layout()
+        plt.savefig("Compare_Decomposition_Methods.png")
+        plt.show()
     return additive, multiplicative
 
 # Robust decomposition
