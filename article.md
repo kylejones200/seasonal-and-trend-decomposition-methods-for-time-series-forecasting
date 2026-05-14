@@ -12,8 +12,8 @@ Time series decomposition is based on the idea that time series can be broken do
 #### Additive vs. Multiplicative Decomposition
 The relationship between components can take different forms. The relationship between components can take different forms:
 
-- **Additive Decomposition**: Components sum together.
-- **Multiplicative Decomposition**: Components multiply.
+- Additive Decomposition: Components sum together.
+- Multiplicative Decomposition: Components multiply.
 
 The choice between these approaches depends on the nature of your data:
 
@@ -25,9 +25,9 @@ While classical decomposition provides valuable insights, modern techniques offe
 ### Practical Applications and Interpretation
 Decomposition results provide actionable insights:
 
-- **Trend Analysis**: Understand the overall direction and strength of change.
-- **Seasonality Analysis**: Identify periodic patterns and their amplitudes.
-- **Residual Analysis**: Detect anomalies and assess data noise.
+- Trend Analysis: Understand the overall direction and strength of change.
+- Seasonality Analysis: Identify periodic patterns and their amplitudes.
+- Residual Analysis: Detect anomalies and assess data noise.
 
 
 #### Let's run it!
@@ -37,13 +37,13 @@ Now let's apply this to ERCOT electric load data.
 
 
 
-**Trend Direction** shows us that overall electricity demand is increasing during this period. **Trend Strength shows us how si**gnificant this increase is over time. **Seasonal Amplitude** quantifies the daily or weekly cycles in electricity demand. **Residual Variance** shows how much of the variability is not explained by trend or seasonality.
+Trend Direction shows us that overall electricity demand is increasing during this period. Trend Strength shows us how significant this increase is over time. Seasonal Amplitude quantifies the daily or weekly cycles in electricity demand. Residual Variance shows how much of the variability is not explained by trend or seasonality.
 
 ### Choosing the Period
 The `period` value greatly influences results. For example:
 
-- **15-minute intervals**: Use `period=96` (daily seasonality).
-- **Hourly intervals**: Use `period=24`.
+- 15-minute intervals: Use `period=96` (daily seasonality).
+- Hourly intervals: Use `period=24`.
 
 #### So what?
 Seasonal and trend decomposition methods provide essential tools for understanding time series data. By separating complex temporal patterns into interpretable components, we gain insights that inform forecasting, anomaly detection, and pattern analysis. The choice of decomposition method should be guided by the characteristics of your data and the specific requirements of your analysis.
