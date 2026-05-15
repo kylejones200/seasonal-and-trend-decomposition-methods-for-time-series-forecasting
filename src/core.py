@@ -3,7 +3,7 @@
 import pandas as pd
 import numpy as np
 from pathlib import Path
-from typing import Dict, Any, Tuple
+from typing import Any
 from statsmodels.tsa.seasonal import seasonal_decompose
 from scipy.signal import savgol_filter
 import matplotlib.pyplot as plt
@@ -54,7 +54,7 @@ def robust_decomposition(df: pd.DataFrame, period: int = 365) -> pd.DataFrame:
         'residual': residuals
     })
 
-def analyze_components(decomposition_result) -> Dict[str, Any]:
+def analyze_components(decomposition_result) -> dict[str, Any]:
     """Analyze decomposition components."""
     trend = decomposition_result.trend.dropna()
     trend_direction = 'increasing' if trend.iloc[-1] > trend.iloc[0] else 'decreasing'

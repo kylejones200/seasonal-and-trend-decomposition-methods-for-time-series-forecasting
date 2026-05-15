@@ -24,7 +24,7 @@ def load_config(config_path: Path = None) -> dict:
     if config_path is None:
         config_path = Path(__file__).parent / 'config.yaml'
     
-    with open(config_path, 'r') as f:
+    with open(config_path) as f:
         return yaml.safe_load(f)
 
 def main():
@@ -58,7 +58,7 @@ def main():
                                     output_dir / 'compare_decomposition_methods.png')
     
     if config['analysis']['run_robust']:
-        robust_results = robust_decomposition(df, config['decomposition']['period'])
+        robust_decomposition(df, config['decomposition']['period'])
         if additive_decomp:
             analysis_results = analyze_components(additive_decomp)
             logging.info(f"Trend Direction: {analysis_results['trend_direction']}")
