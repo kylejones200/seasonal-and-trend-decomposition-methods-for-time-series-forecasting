@@ -5,13 +5,13 @@ import matplotlib.pyplot as plt
 from statsmodels.tsa.seasonal import seasonal_decompose
 from scipy.signal import savgol_filter
 import logging
+np.random.seed(42)
 
 # Create synthetic data with known components
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(message)s')
 
-np.random.seed(42)
 dates = pd.date_range(start='2024-01-01', end='2025-12-31', freq='D')
 
 # Generate individual components

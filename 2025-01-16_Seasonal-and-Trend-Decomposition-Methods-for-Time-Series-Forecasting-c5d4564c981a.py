@@ -10,8 +10,8 @@ from statsmodels.tsa.seasonal import seasonal_decompose
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-
 np.random.seed(42)
+
 dates = pd.date_range(start='2024-01-01', end='2025-12-31', freq='D')
 
 # Generate individual components
