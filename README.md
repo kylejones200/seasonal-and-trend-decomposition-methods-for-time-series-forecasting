@@ -36,3 +36,11 @@ Edit `config.yaml` to customize:
 - Additive decomposition assumes components add together.
 - Multiplicative decomposition assumes components multiply together.
 - Robust decomposition uses Savitzky-Golay filtering for trend estimation.
+
+## Disclaimer
+
+Educational/demo code only. Not financial, safety, or engineering advice. Use at your own risk. Verify results independently before any production or operational use.
+
+## License
+
+MIT — see [LICENSE](LICENSE).
