@@ -95,11 +95,10 @@ def analyze_components(decomposition_result):
     }
 
 
-
 def main():
     # Run decompositions and analysis
     additive_decomp, mult_decomp = compare_decomposition_methods(df)
-    robust_results = robust_decomposition(df)
+    robust_decomposition(df)
     analysis_results = analyze_components(additive_decomp)
     logging.info(analysis_results)
 

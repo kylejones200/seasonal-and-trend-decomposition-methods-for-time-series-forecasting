@@ -1,6 +1,5 @@
 # Description: Short example for Seasonal and Trend Decomposition Methods for Time Series Forecasting.
 
-
 # Create synthetic data with known components
 
 import matplotlib.pyplot as plt
@@ -29,16 +28,13 @@ df = pd.DataFrame({"date": dates, "value": data})
 def compare_decomposition_methods(df, period=365, plot: bool = False):
     # Additive decomposition
     additive = seasonal_decompose(df["value"], period=period, model="additive")
-
     # Multiplicative decomposition
     multiplicative = seasonal_decompose(
         df["value"], period=period, model="multiplicative"
     )
-
     # Plotting both decompositions
     if plot:
         fig, axes = plt.subplots(2, 4, figsize=(20, 10))
-
         # Plot additive decomposition
         axes[0, 0].plot(df["value"])
         axes[0, 0].set_title("Original (Additive)")
@@ -48,7 +44,6 @@ def compare_decomposition_methods(df, period=365, plot: bool = False):
         axes[0, 2].set_title("Seasonal")
         axes[0, 3].plot(additive.resid)
         axes[0, 3].set_title("Residual")
-
         # Plot multiplicative decomposition
         axes[1, 0].plot(df["value"])
         axes[1, 0].set_title("Original (Multiplicative)")
@@ -58,7 +53,6 @@ def compare_decomposition_methods(df, period=365, plot: bool = False):
         axes[1, 2].set_title("Seasonal")
         axes[1, 3].plot(multiplicative.resid)
         axes[1, 3].set_title("Residual")
-
         plt.tight_layout()
         plt.savefig("Compare_Decomposition_Methods.png")
         plt.show()  # Show the figure interactively
@@ -89,13 +83,10 @@ def analyze_components(decomposition_result):
     trend = decomposition_result.trend.dropna()
     trend_direction = "increasing" if trend.iloc[-1] > trend.iloc[0] else "decreasing"
     trend_strength = abs(trend.iloc[-1] - trend.iloc[0]) / len(trend)
-
     seasonal = decomposition_result.seasonal.dropna()
     seasonal_amplitude = seasonal.max() - seasonal.min()
-
     residuals = decomposition_result.resid.dropna()
     residual_variance = residuals.var()
-
     return {
         "trend_direction": trend_direction,
         "trend_strength": trend_strength,
@@ -104,24 +95,20 @@ def analyze_components(decomposition_result):
     }
 
 
-
 def main():
     # Run Decompositions and Analysis
     additive_decomp, mult_decomp = compare_decomposition_methods(df)
-    robust_results = robust_decomposition(df)
-    analysis_results = analyze_components(additive_decomp)
-
+    robust_decomposition(df)
+    analyze_components(additive_decomp)
     # Load data
     df = read_csv("ercot_load_data.csv", parse_dates=["date"], index_col="date")
-
     df.sort_index(inplace=True)
     df = df[df["values"] >= 60]
     df["value"] = df["values"]
-
     # Run Decompositions and Analysis
     additive_decomp, mult_decomp = compare_decomposition_methods(df, period=500)
-    robust_results = robust_decomposition(df)
-    analysis_results = analyze_components(additive_decomp)
+    robust_decomposition(df)
+    analyze_components(additive_decomp)
 
 
 if __name__ == "__main__":

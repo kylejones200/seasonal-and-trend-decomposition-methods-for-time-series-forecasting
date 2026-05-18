@@ -54,19 +54,19 @@ def compare_decomposition_methods(df, period=365):
 
 def main():
     additive_decomp, mult_decomp = compare_decomposition_methods(df)
-    robust_results = robust_decomposition(df)
-    analysis_results = analyze_components(additive_decomp)
+    robust_decomposition(df)
+    analyze_components(additive_decomp)
     df = pd.read_csv("ercot_load_data.csv", parse_dates=["date"], index_col="date")
     df.sort_index(inplace=True)
     df = df[df["values"] >= 60]
     df["value"] = df["values"]
     additive_decomp, mult_decomp = compare_decomposition_methods(df, period=500)
-    robust_results = robust_decomposition(df)
-    analysis_results = analyze_components(additive_decomp)
+    robust_decomposition(df)
+    analyze_components(additive_decomp)
     df_h = df.resample("h").mean()
     additive_decomp, mult_decomp = compare_decomposition_methods(df_h, period=96)
-    robust_results = robust_decomposition(df_h)
-    analysis_results = analyze_components(additive_decomp)
+    robust_decomposition(df_h)
+    analyze_components(additive_decomp)
 
 
 def robust_decomposition(df, period=365):
@@ -93,21 +93,13 @@ def robust_decomposition(df, period=365):
 
 def main() -> None:
     np.random.seed(42)
-
     dates = pd.date_range(start="2024-01-01", end="2025-12-31", freq="D")
-
     t = np.linspace(0, len(dates) - 1, len(dates))
-
     trend = 0.1 * t + 10
-
     seasonality = 5 * np.sin(2 * np.pi * t / 365)
-
     noise = np.random.normal(0, 1, len(dates))
-
     data = trend + seasonality + noise
-
-    df = pd.DataFrame({"date": dates, "value": data})
-
+    pd.DataFrame({"date": dates, "value": data})
     main()
 
 
